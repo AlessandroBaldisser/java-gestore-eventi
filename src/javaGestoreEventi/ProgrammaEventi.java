@@ -31,6 +31,20 @@ public class ProgrammaEventi {
 		return risultato;
 	}
 	
+	public int numeroEventi() {
+		return eventi.size();   //metodo delle liste, indica la grandezza della lista
+		//(numero di oggetti che contiene)
+	}
+	
+	public void svuotaEventi() {
+		eventi.clear();  //rimuove tutti gli oggetti all'interno della lista 
+	}
+	
+	public void formattaStringa() {
+		eventi.forEach(elemento -> {
+			System.out.println(elemento.getData() + " - " + elemento.getTitolo());
+		});
+	}
 	
 	
 	//GETTERS

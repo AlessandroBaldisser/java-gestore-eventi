@@ -46,9 +46,19 @@ public class Main {
 		Evento evento2 = new Evento("titolo2", dataEvento2, 1651);
 		Evento evento3 = new Evento("titolo3", dataEvento3, 1652);
 		programmaEventi1.add(evento1);
-		programmaEventi1.add(evento2)
+		programmaEventi1.add(evento2);
 		
 		ProgrammaEventi programma1 = new ProgrammaEventi("titolo1", programmaEventi1);
-		programma1.aggiungiEvento(evento1);
+		programma1.aggiungiEvento(evento3);
+		System.out.println(programma1.getEventi());
+		
+		System.out.println(programma1.eventiInData(dataEvento1));
+		
+		System.out.println(programma1.numeroEventi());
+		
+//		programma1.svuotaEventi();
+//		System.out.println(programma1.numeroEventi());
+		
+		programma1.formattaStringa();
 	}
 }
