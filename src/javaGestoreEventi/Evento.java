@@ -26,10 +26,10 @@ public class Evento {
 	public LocalDate getData() {
 		return data;
 	}
-	public int getNumeroPostiTotale() {
+	protected int getNumeroPostiTotale() {
 		return numeroPostiTotale;
 	}
-	public int getNumeroPostiPrenotati() {
+	protected int getNumeroPostiPrenotati() {
 		return numeroPostiPrenotati;
 	}
 	public int getNumeroPostiDisponibili() {
@@ -52,7 +52,11 @@ public class Evento {
 	}
 		
 	public void setNumeroPostiTotale(int numeroPostiTotale) {
-		this.numeroPostiTotale = numeroPostiTotale;
+		if(this.numeroPostiTotale > 0) {
+			this.numeroPostiTotale = numeroPostiTotale;			
+		}else {
+			throw new IllegalArgumentException("Il numero di posti totali deve essere maggiore di 0!");
+		}
 	}
 	
 	// Evento Methods
@@ -74,7 +78,7 @@ public class Evento {
 			}
 		}
 	}
-	
+	// Method overloading 
 	public void prenota(int i) {
 		// Controlla se la data è già passata
 		if(data.isBefore(LocalDate.now())) { 
@@ -82,7 +86,10 @@ public class Evento {
 		}else {
 			if(numeroPostiTotale - numeroPostiPrenotati == 0) {
 				System.out.println("Spiacenti ma non ci sono più posti disposibili");
-			}else {
+			}else if(numeroPostiTotale - (numeroPostiPrenotati +i) <= 0){
+				System.out.println("Spiacenti ma non ci sono più posti disposibili");
+			}
+			else {
 				// Aggiunge "i" posti prenotati
 				numeroPostiPrenotati += i;
 			}
@@ -105,6 +112,7 @@ public class Evento {
 		}
 	}
 	
+	// Method overloading
 	public void disdici(int i) {
 		// Controlla se la data è già passata
 		if(data.isBefore(LocalDate.now())) {

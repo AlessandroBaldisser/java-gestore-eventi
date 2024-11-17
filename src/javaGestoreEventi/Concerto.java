@@ -1,5 +1,6 @@
 package javaGestoreEventi;
 import java.time.LocalDate;
+import java.text.DecimalFormat;
 import java.time.LocalTime;
 
 public class Concerto extends Evento{
@@ -19,8 +20,13 @@ public class Concerto extends Evento{
 	}
 	
 	public String getPrezzo() {
-		String prezzoFormattato = prezzo +"$";
-		return prezzoFormattato;
+		// Formato con due cifre decimali, il #.00 forza il prezzo ad avere due cifre decimali, in più arrotonda
+	    DecimalFormat formattatore = new DecimalFormat("#.00"); 
+	    // Converte il prezzo in double con parseDouble
+	    double prezzoDouble = Double.parseDouble(prezzo); 
+	    // Applica il DecimalFormat e aggiunge il simbolo $	
+	    String prezzoFormattato = formattatore.format(prezzoDouble) + "$"; 
+	    return prezzoFormattato;
 	}
 	
 	// SETTERS
@@ -39,7 +45,7 @@ public class Concerto extends Evento{
 	
 	@Override
 	public String toString() {
-		return (data + " - " + ora + " - " + titolo + " - " + getPrezzo());
+		return (titolo + ", data: " + data + ", ore: " + ora + ", prezzo: " + getPrezzo());
 	}
 	
 }
